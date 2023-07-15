@@ -23,5 +23,4 @@ btn2.place(relx=0.880,rely=0.170)
 
 
 
-
 root.mainloop()
