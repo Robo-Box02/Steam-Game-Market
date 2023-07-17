@@ -19,6 +19,7 @@ def main_menu():
 
 
 
+<<<<<<< HEAD
 def enter_account():
     frame_menu.place_forget()
     frame_login.place(relx=0,rely=0)
@@ -68,4 +69,6 @@ btn = Button(frame_menu,text= "click",command = main_menu)
 btn.place(relx=0.56,rely=0.5)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+=======
+>>>>>>> 8632e7a41d913d049df16c54482f8af071ecb76d
 root.mainloop()
