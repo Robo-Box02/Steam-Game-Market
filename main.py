@@ -6,8 +6,9 @@ frame_menu = Frame(root,width = 1920,height = 1080,bg = '#0f1948')
 frame_menu.place(x=1,y=1)
 frame_login = Frame(root,width=1920,height=1080)
 frame_login.config(background="#0f1948")
-lbl= Label(frame_menu,text="Login",font="Arial 14 bold")
-lbl.place(relx=0.1,rely=0.1)
+frame_registration = Frame(root,width = 1920,height = 1080,bg = '#0f1948')
+frame_registration.config(background="#0f1948")
+
 
 def main_menu():
     frame_menu.place_forget()
@@ -15,14 +16,50 @@ def main_menu():
     frame_login.place(relx=0,rely=0.1)
     frame_menu.pack()
 
+def Registration():
+    frame_login.place_forget()
+    frame_registration.place(relx=0,rely=0)
 
 
+lbl_R = Label(frame_registration,text = "GMAIL",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl_R.place(relx=0.480,rely=0.2)
+lbl_L = Label(frame_registration)
 
 
-<<<<<<< HEAD
 def enter_account():
     frame_menu.place_forget()
     frame_login.place(relx=0,rely=0)
+
+def switch():
+    if int_var.get() == 1:
+         entry2 ['show'] = '*'
+    else:
+         entry2 ['show'] = ''
+
+def clear():
+    entry2.delete(0,'end')
+    entry1. delete(0,'end')
+
+lbl1 = Label(frame_login,text="Login",font="Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl1.place(relx=0.480,rely=0.390)
+entry1 = Entry(frame_login,font= "Arial 14")
+entry1.place(relx=0.455,rely=0.415,height=20)
+entry1.config(width=15)
+
+lbl2 = Label(frame_login,text="Password",font="Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl2.place(relx=0.470,rely=0.450)
+entry2 = Entry(frame_login,font= "Arial 14")
+entry2.place(relx=0.455,rely=0.475,height=20)
+entry2.config(width=15)
+
+btn1 = Button(frame_login,text="Registration",font="Arial 12 bold",bg="Yellow",command=Registration)
+btn1.place(relx=0.455,rely=0.500)
+btn2 = Button(frame_login,text = "Enter",font="Arial 12 bold",bg= "Yellow")
+btn2.place(relx=0.515,rely=0.500)
+
+int_var = IntVar()
+check_btn = Checkbutton(frame_login, text='Switch states', variable=int_var, command=switch, font="Arial 10 bold", width=10,fg="Black")
+check_btn.place(relx=0.475, rely=0.540)
 
 
 img1 = Image.open("Photo/steam-icon-2048x2048-rbyixh0f.png")
@@ -65,10 +102,5 @@ Bt_S= Button(frame_menu,text = "Shop",font="Arial 12 bold",borderwidth=4).place(
 Btn_L = Button(frame_menu,text="Library",font="Arial 12 bold",borderwidth=4).place(relx=0.45,rely=0.030)
 Btn_A = Button(frame_menu,text="Account",font="Arial 12 bold",borderwidth=4,command=enter_account).place(relx=0.55,rely=0.030)
 Btn_E = Button(frame_menu,text="Exit",font="Arial 12 bold",borderwidth=4).place(relx=0.65,rely=0.030)
-btn = Button(frame_menu,text= "click",command = main_menu)
-btn.place(relx=0.56,rely=0.5)
 ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
-=======
->>>>>>> 8632e7a41d913d049df16c54482f8af071ecb76d
 root.mainloop()
