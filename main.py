@@ -40,6 +40,10 @@ def clear():
     entry2.delete(0,'end')
     entry1. delete(0,'end')
 
+def Photo0():
+
+
+
 lbl1 = Label(frame_login,text="Login",font="Arial 14 bold",bg="#0f1948",fg="Yellow")
 lbl1.place(relx=0.480,rely=0.390)
 entry1 = Entry(frame_login,font= "Arial 14")
@@ -73,6 +77,7 @@ img = Image.open("Photo/Screenshot 2023-07-17 194419.png")
 resized_image0 = img.resize((200,250))
 photo0 = ImageTk.PhotoImage(resized_image0)
 label0 = Label(frame_menu, image=photo0)
+label0.bind("<Enter>",func=Enter)
 label0.image = photo0
 label0.place(relx=0.298, rely=0.350)
 
