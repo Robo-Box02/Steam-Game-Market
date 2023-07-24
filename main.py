@@ -1,5 +1,7 @@
 from tkinter import*
 from PIL import Image, ImageTk
+from tkinter.messagebox import *
+import json
 root = Tk()
 root.geometry('1920x1080')
 frame_menu = Frame(root,width = 1920,height = 1080,bg = '#0f1948')
@@ -21,10 +23,55 @@ def Registration():
     frame_registration.place(relx=0,rely=0)
 
 
-lbl_R = Label(frame_registration,text = "GMAIL",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
-lbl_R.place(relx=0.480,rely=0.2)
-lbl_L = Label(frame_registration)
+def register():
+    if "@gmail.com" in entry_G.get():
+        print(entry_G.get())
+    else:
+        showerror("Error", "Пожалуйста добавьте маил")
+    if len(entry_P.get()) > 8:
+        print(entry_P.get())
+    else:
+        showerror("Error","Колличество символов должно быть больше 8")
+    if len(entry_CP.get()) == len(entry_P.get()):
+        print(entry_CP.get())
+    else:
+        showerror("Error", "Пароль не совпадают")
 
+    user={
+        "gmail":entry_G.get(),
+        "login":entry_L.get(),
+        "password":entry_P.get()
+    }
+
+    with open("Files/son.json","r")as FileHandler:
+        users=json.loads(FileHandler.readline())
+
+    users.append(user)
+
+    with open("Files/son.json","w")as FileHandler:
+        json.dump(users,FileHandler)
+    frame_registration.place_forget()
+    frame_login.place(relx=0,rely=0)
+
+
+lbl_G = Label(frame_registration,text = "GMAIL",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl_G.place(relx=0.440,rely=0.200)
+entry_G = Entry(frame_registration,font="Arial 14 bold")
+entry_G.place(relx=0.440,rely=0.225,height=30)
+lbl_L = Label(frame_registration,text = "LOGIN",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl_L.place(relx=0.440,rely=0.255)
+entry_L = Entry(frame_registration,font="Arial 14 bold")
+entry_L.place(relx=0.440,rely=0.280)
+lbl_P = Label(frame_registration,text="PASSWORD",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl_P.place(relx=0.440,rely=0.310)
+entry_P = Entry(frame_registration,font="Arial 14 bold")
+entry_P.place(relx=0.440,rely=0.335)
+lbl_CP = Label(frame_registration,text="CONFIRM PASSWORD",font= "Arial 14 bold",bg="#0f1948",fg="Yellow")
+lbl_CP.place(relx=0.440,rely=0.360)
+entry_CP = Entry(frame_registration,font="Arial 14 bold")
+entry_CP.place(relx=0.440,rely=0.385)
+btn = Button(frame_registration,text="Press for Registration",width=15,height=2,command=register)
+btn.place(relx=0.465,rely=0.415)
 
 def enter_account():
     frame_menu.place_forget()
@@ -41,7 +88,17 @@ def clear():
     entry1. delete(0,'end')
 
 def Photo0():
+    ...
 
+def Login():
+    if entry1.get() == entry_L.get():
+        print("OK")
+    else:
+        showerror("Error","Логин не верный, пожалуйста повторите попытку")
+    if entry2.get() == entry_P.get():
+        print("OK")
+    else:
+        showerror("Error","Пороль введен не правельно, пожалуйста повторите попытку")
 
 
 lbl1 = Label(frame_login,text="Login",font="Arial 14 bold",bg="#0f1948",fg="Yellow")
@@ -51,19 +108,19 @@ entry1.place(relx=0.455,rely=0.415,height=20)
 entry1.config(width=15)
 
 lbl2 = Label(frame_login,text="Password",font="Arial 14 bold",bg="#0f1948",fg="Yellow")
-lbl2.place(relx=0.470,rely=0.450)
+lbl2.place(relx=0.470,rely=0.440)
 entry2 = Entry(frame_login,font= "Arial 14")
-entry2.place(relx=0.455,rely=0.475,height=20)
+entry2.place(relx=0.455,rely=0.465,height=20)
 entry2.config(width=15)
 
 btn1 = Button(frame_login,text="Registration",font="Arial 12 bold",bg="Yellow",command=Registration)
-btn1.place(relx=0.455,rely=0.500)
-btn2 = Button(frame_login,text = "Enter",font="Arial 12 bold",bg= "Yellow")
-btn2.place(relx=0.515,rely=0.500)
+btn1.place(relx=0.455,rely=0.490)
+btn2 = Button(frame_login,text = "Enter",font="Arial 12 bold",bg= "Yellow",command= Login)
+btn2.place(relx=0.515,rely=0.490)
 
 int_var = IntVar()
 check_btn = Checkbutton(frame_login, text='Switch states', variable=int_var, command=switch, font="Arial 10 bold", width=10,fg="Black")
-check_btn.place(relx=0.475, rely=0.540)
+check_btn.place(relx=0.470, rely=0.530)
 
 
 img1 = Image.open("Photo/steam-icon-2048x2048-rbyixh0f.png")
@@ -77,7 +134,7 @@ img = Image.open("Photo/Screenshot 2023-07-17 194419.png")
 resized_image0 = img.resize((200,250))
 photo0 = ImageTk.PhotoImage(resized_image0)
 label0 = Label(frame_menu, image=photo0)
-label0.bind("<Enter>",func=Enter)
+label0.bind("<Enter>")
 label0.image = photo0
 label0.place(relx=0.298, rely=0.350)
 
